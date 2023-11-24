@@ -5,6 +5,18 @@ import { TableProps, ColumnConfig } from './Interface';
 import { ThemeProvider } from '@mui/material/styles';
 
 const createMuiColumns = (columns: ColumnConfig[]): GridColDef[] => {
+	// Getting TS error here
+	//TS2322: Type
+	//{     field: string;     headerName: string;     width: number;     renderCell: (params: GridValueGetterParams<any, any, GridTreeNodeWithRender>) => any; }[]
+	//is not assignable to type  GridColDef[] 
+	//Type
+	//{     field: string;     headerName: string;     width: number;     renderCell: (params: GridValueGetterParams) => any; }
+	//is not assignable to type  GridColDef 
+	//Property  type  is missing in type
+	//{     field: string;     headerName: string;     width: number;     renderCell: (params: GridValueGetterParams) => any; }
+	//but required in type  GridSingleSelectColDef<any, any, any> 
+	//
+	//gridColDef.d.ts(267, 5):  type  is declared here.
 	return columns.map(({ key, title, width }) => ({
 		field: key,
 		headerName: title,
@@ -37,12 +49,24 @@ const Table = <T extends {}>({
 	theme,
 	onRowSelected,
 }: TableProps<T>) => {
+	// Also here
+	// TS2345: Argument of type
+	// {     key: keyof T;     title: string;     width?: number | undefined;     renderCell?: ((value: any, row: T) => ReactNode) | undefined; }[]
+	// is not assignable to parameter of type  ColumnConfig[] 
+	// Type
+	// {     key: keyof T;     title: string;     width?: number | undefined;     renderCell?: ((value: any, row: T) => ReactNode) | undefined; }
+	// is not assignable to type  ColumnConfig 
+	// Types of property  key  are incompatible.
+	// Type  keyof T  is not assignable to type  string 
+	// Type  string | number | symbol  is not assignable to type  string 
+	// Type  number  is not assignable to type  string 
 	const muiColumns = createMuiColumns(columns);
 	return (
 		<ThemeProvider theme={theme}>
 			<DataGrid
 				rows={data}
 				columns={muiColumns}
+				// Also here
 				pageSize={pageSizeOptions[0]}
 				initialState={{
 					pagination: {

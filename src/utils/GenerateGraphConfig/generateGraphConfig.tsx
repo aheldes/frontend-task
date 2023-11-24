@@ -1,5 +1,6 @@
 import { GraphData} from '../../components/Graph/Interface';
 
+// TS errors here. 
 export const generateChartData = (data: GraphData) => {
 	return {
 		labels: data.labels,

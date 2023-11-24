@@ -1,6 +1,7 @@
 import React from 'react';
 import { createTheme} from '@mui/material/styles';
 
+// TS error for MuiDataGrid
 export const basicTheme = createTheme({
 	components: {
 		MuiDataGrid: {

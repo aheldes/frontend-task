@@ -14,6 +14,7 @@ import FinanceIcon from '@mui/icons-material/AccountBalance';
 import TravelIcon from '@mui/icons-material/Flight';
 import { green, amber, grey } from '@mui/material/colors';
 import { Sector, Status } from '../../data/data'
+// Import error
 
 export const getIconForStatus = (status: Status) => {
 	switch (status) {
